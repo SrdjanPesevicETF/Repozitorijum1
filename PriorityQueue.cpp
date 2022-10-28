@@ -6,6 +6,7 @@ PriorityQueue::PriorityQueue(int kapacitet)
 	this->niz = new int[kapacitet];
 	this->kapacitet = kapacitet;
 	this->broj_elemenata = 0;
+	this->broj_skinutih_elemenata = 0;
 	this->f = -1;
 	this->r = 0;
 }
@@ -51,6 +52,8 @@ bool PriorityQueue::Obrisi_Najveci(PriorityQueue *red,int *value)
 	if (PrazanRed(red))
 		return false;
 	*value = red->niz[red->f++];
+	broj_skinutih_elemenata++;
+	
 	return true;
 }
 
@@ -59,9 +62,11 @@ bool PriorityQueue::Obrisi_Na_Poz(int indeks)
 
 	if (indeks <0 || indeks>this->broj_elemenata)
 		return false;
-	for (int i = indeks ; i < this->broj_elemenata-1; i++)
+	for (int i = indeks +broj_skinutih_elemenata; i < this->broj_elemenata-1; i++)
 	{
-		this->niz[i] = this->niz[i+1];
+		
+		this->niz[i] = this->niz[i + 1];
+		
 		
 	}
 	this->broj_elemenata--;
@@ -116,7 +121,7 @@ bool PriorityQueue::shouldShrink()
 void PriorityQueue::ispis(PriorityQueue *red)
 {
 	if (red->f != -1)
-		for (int i = red->f; i < red->broj_elemenata; i++)
+		for (int i = red->f; i <this->broj_elemenata; i++)
 			std::cout << red->niz[i] << " ";
 }
 void PriorityQueue::sortiraj(PriorityQueue *red)
