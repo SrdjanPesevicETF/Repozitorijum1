@@ -65,7 +65,7 @@ bool PriorityQueue::Obrisi_Na_Poz(int indeks)
 		
 	}
 	this->broj_elemenata--;
-	/*if (this->shouldShrink())
+	if (this->shouldShrink())
 	{
 
 		int* Novi_Niz1 = new int[this->broj_elemenata]();
@@ -78,7 +78,7 @@ bool PriorityQueue::Obrisi_Na_Poz(int indeks)
 		delete[]this->niz;
 		this->niz = Novi_Niz1;
 		
-	}*/
+	}
 
 	return true;
 }
@@ -104,19 +104,19 @@ bool PriorityQueue::Obrisi_Po_Vrije(int value)
 	return Obrisi_Na_Poz(Pretraga(value));
 }
 
-/*bool PriorityQueue::shouldShrink()
+bool PriorityQueue::shouldShrink()
 {
 
 
 	return this->broj_elemenata <= this->kapacitet / 2;
-}*/
+}
 
 
 
 void PriorityQueue::ispis(PriorityQueue *red)
 {
 	if (red->f != -1)
-		for (int i = red->f; i < red->r; i++)
+		for (int i = red->f; i < red->broj_elemenata; i++)
 			std::cout << red->niz[i] << " ";
 }
 void PriorityQueue::sortiraj(PriorityQueue *red)
