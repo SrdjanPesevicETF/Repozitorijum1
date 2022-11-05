@@ -6,6 +6,7 @@ private:
 	int kapacitet;
 	int broj_elemenata;
 	int broj_skinutih_elemenata;
+	
 	int f, r;
 public:
 	PriorityQueue(int kapacitet = 1);

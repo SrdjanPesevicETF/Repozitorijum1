@@ -7,8 +7,10 @@ PriorityQueue::PriorityQueue(int kapacitet)
 	this->kapacitet = kapacitet;
 	this->broj_elemenata = 0;
 	this->broj_skinutih_elemenata = 0;
+	
 	this->f = -1;
 	this->r = 0;
+	
 }
 PriorityQueue::~PriorityQueue()
 {
@@ -45,15 +47,17 @@ void PriorityQueue::dodaj(PriorityQueue *red,int value)
 		red->f = 0;
 	red->niz[red->r++] = value;
 	red->broj_elemenata++;
+	sortiraj(red);
 }
 
 bool PriorityQueue::Obrisi_Najveci(PriorityQueue *red,int *value)
 {
 	if (PrazanRed(red))
 		return false;
+	
 	*value = red->niz[red->f++];
 	broj_skinutih_elemenata++;
-	
+
 	return true;
 }
 
@@ -70,6 +74,7 @@ bool PriorityQueue::Obrisi_Na_Poz(int indeks)
 		
 	}
 	this->broj_elemenata--;
+	this->r--;
 	if (this->shouldShrink())
 	{
 
@@ -100,8 +105,6 @@ int PriorityQueue::Pretraga(int value)
 	}
 	return -1;
 
-
-	return 0;
 }
 
 bool PriorityQueue::Obrisi_Po_Vrije(int value)
@@ -111,12 +114,8 @@ bool PriorityQueue::Obrisi_Po_Vrije(int value)
 
 bool PriorityQueue::shouldShrink()
 {
-
-
 	return this->broj_elemenata <= this->kapacitet / 2;
 }
-
-
 
 void PriorityQueue::ispis(PriorityQueue *red)
 {
